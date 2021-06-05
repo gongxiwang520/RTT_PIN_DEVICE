@@ -15,10 +15,9 @@ PIN设备驱动中按照同样的套路定义了PIN设备的操作方法，以�
 ![rt_pin_ops](picture/01.png)
 
 GPIO的初始化流程为`rtthread_startup() -> rt_hw_board_init() -> rt_hw_pin_init()`,在rt_hw_pin_init()函数中先初始化GPIO时钟，然后调用`rt_device_pin_register()`函数注册PIN设备，在该函数中首先注册PIN设备操作方法的回调函数，然后调用`rt_device_register()`函数注册PIN设备。
-`
+```
 // GPIO回调函数实例
 const static struct rt_pin_ops _stm32_pin_ops = 
-
 {
     stm32_pin_mode,
     stm32_pin_write,
@@ -28,4 +27,4 @@ const static struct rt_pin_ops _stm32_pin_ops =
     stm32_pin_irq_enable,
     stm32_pin_get,
 };
-`
+```
